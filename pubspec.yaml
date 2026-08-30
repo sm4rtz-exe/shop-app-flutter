@@ -77,7 +77,6 @@ flutter:
     - family: Archivo
       fonts:
         - asset: assets/fonts/Archivo/static/Archivo_Condensed-Light.ttf
-          weight: 300
         - asset: assets/fonts/Archivo/static/Archivo-Black.ttf
           weight: 900
   #   - family: Trajan Pro

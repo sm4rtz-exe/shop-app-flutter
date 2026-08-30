@@ -14,9 +14,13 @@ class MyApp extends StatelessWidget {
       title: "Shopping App",
       theme: ThemeData(
         fontFamily: "Archivo",
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.blue,
+          primary: Colors.blue,
+        ),
         inputDecorationTheme: InputDecorationTheme(
-          hintStyle: TextStyle(fontWeight: FontWeight.w300, fontSize: 16),
+          hintStyle: TextStyle(fontSize: 16),
+          prefixIconColor: Colors.blue,
         ),
       ),
       home: HomePage(),
