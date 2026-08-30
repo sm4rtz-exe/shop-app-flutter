@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app_flutter/global_variables.dart';
 import 'package:shop_app_flutter/home.dart';
+import 'package:shop_app_flutter/product_details.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,8 +24,21 @@ class MyApp extends StatelessWidget {
           hintStyle: TextStyle(fontSize: 16),
           prefixIconColor: Colors.blue,
         ),
+        textTheme: const TextTheme(
+          titleLarge: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
+          titleMedium: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          bodySmall: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        ),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.blueGrey,
+          titleTextStyle: TextStyle(
+            color: Colors.white,
+            fontFamily: "Archivo",
+            fontSize: 20,
+          ),
+        ),
       ),
-      home: HomePage(),
+      home: ProductDetailsPage(product: products[0]),
     );
   }
 }
