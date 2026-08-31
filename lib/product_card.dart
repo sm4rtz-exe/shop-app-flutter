@@ -26,7 +26,7 @@ class ProductCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(title, style: Theme.of(context).textTheme.titleMedium),
-          Text(price.toString(), style: Theme.of(context).textTheme.bodySmall),
+          Text("\$$price", style: Theme.of(context).textTheme.bodySmall),
           SizedBox(height: 15),
           Center(child: Image.asset(image, height: 175)),
         ],
