@@ -29,7 +29,6 @@ class MyApp extends StatelessWidget {
         ),
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.blue,
-          centerTitle: false,
           titleTextStyle: TextStyle(
             color: Colors.white,
             fontFamily: "Archivo",
