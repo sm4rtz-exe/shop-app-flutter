@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shop_app_flutter/cart_provider.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   final Map<String, Object> product;
@@ -9,7 +11,7 @@ class ProductDetailsPage extends StatefulWidget {
 }
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
-  int selectedSize = 1;
+  int selectedSize = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,12 +22,12 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             widget.product["title"] as String,
             style: Theme.of(context).textTheme.titleLarge,
           ),
-          const Spacer(),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Image.asset(widget.product["images"] as String),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsetsGeometry.all(16),
+              child: Image.asset(widget.product["images"] as String),
+            ),
           ),
-          const Spacer(flex: 2),
           Container(
             height: 250,
             width: double.infinity,
@@ -69,7 +71,35 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      if (selectedSize != 0) {
+                        Provider.of<CartProvider>(
+                          context,
+                          listen: false,
+                        ).addProduct({
+                          "id": widget.product["id"],
+                          "title": widget.product["title"],
+                          "value": widget.product["value"],
+                          "sizes": selectedSize,
+                          "images": widget.product["images"],
+                          "company": widget.product["company"],
+                          "price": widget.product['price'],
+                        });
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text("Item added to cart!"),
+                            backgroundColor: Colors.green,
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Please select a size"),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                      }
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Theme.of(context).colorScheme.primary,
                       minimumSize: const Size(double.infinity, 50),

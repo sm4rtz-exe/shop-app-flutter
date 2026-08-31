@@ -27,5 +27,3 @@ final products = [
     "price": 17.00,
   },
 ];
-
-final cart = [{}];
