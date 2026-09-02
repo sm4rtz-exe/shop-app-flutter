@@ -26,7 +26,50 @@ class CartPage extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                   trailing: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text(
+                              "Delete Product?",
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                            content: const Text("Are you sure?"),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text(
+                                  "No",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Provider.of<CartProvider>(
+                                    context,
+                                    listen: false,
+                                  ).removeProduct(cartItem);
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text(
+                                  "Yes",
+                                  style: TextStyle(
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
                     icon: Icon(Icons.delete, color: Colors.red),
                   ),
 
